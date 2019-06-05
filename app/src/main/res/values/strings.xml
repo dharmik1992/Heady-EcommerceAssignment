@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">HeadyEcommerceApp</string>
+    <string name="nointernetmessage">No Internet connection,Please check your connection</string>
+    <string name="commonerror">error occurred</string>
+    <string name="enter_emailid">Please enter registered email address</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="invalid_password">Password must at least be 8 characters</string>
+    <string name="invalid_emailid">Enter valid email</string>
+    <string name="forgetpasstitle">Please enter your registered\nemail address below.</string>
+
+    <string name="noInternetTitle">Oh Snap</string>
+    <string name="noInternetmgs">No Internet connection,Please check your connection</string>
+    <string name="noMyFeedsAvailableTitle">No Data Available....</string>
+    <string name="empty_string"></string>
+    <string name="date_string">mar \n2019</string>
+    <string name="permit">Permit Number</string>
+    <string name="invalidPasswored">Password must be atleast 6 characters &amp; a maximum 15 characters</string>
+</resources>

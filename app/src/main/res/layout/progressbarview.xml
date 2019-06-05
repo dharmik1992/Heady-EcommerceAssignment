@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.app.headyecommerceapp.customClasses.ProgressBarView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progressbarview"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+
+    android:visibility="visible"
+
+    app:matProg_barColor="@color/colorPrimary"
+    app:matProg_progressIndeterminate="true"
+    tools:visibility="visible" />
