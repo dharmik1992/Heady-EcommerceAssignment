@@ -14,26 +14,22 @@
         android:id="@+id/linearMainLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:background="@color/white"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="5dp">
 
         <ImageView
             android:id="@+id/product_thumb"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/defaultplaceholder"
-             />
+            android:scaleType="fitXY"
+            android:src="@drawable/defaultplaceholder" />
 
         <RelativeLayout
             android:id="@+id/top_icon_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
             android:orientation="vertical">
 
@@ -48,44 +44,62 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
 
+
             <TextView
-                android:id="@+id/item_short_desc"
+                android:id="@+id/txt_variant_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_parent_category"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:singleLine="true"
-                android:text="Size - 44"
+                android:text="Select Variant"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/iteam_avilable"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/rd_color_variant"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/item_short_desc"
-                android:layout_alignBottom="@+id/item_short_desc"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="5dp"
-                android:singleLine="true"
-                android:text="Available"
-                android:textColor="#ff669900"
-                android:textSize="15sp"
-                android:visibility="visible" />
+                android:layout_below="@+id/txt_variant_title"
+                android:paddingTop="@dimen/size_10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/item_price"
-                android:layout_width="wrap_content"
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="@dimen/size_5dp"
-                android:singleLine="true"
-                android:text="Rs 20"
-                android:textColor="@android:color/background_dark"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/rd_color_variant"
+                android:layout_marginTop="@dimen/size_5dp"
+                android:layout_marginLeft="@dimen/size_10dp"
+                android:layout_marginBottom="@dimen/size_15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rd_color_variant"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:text="Rs 20"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_55dp"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:text="Size - 44"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </RelativeLayout>
     </LinearLayout>
