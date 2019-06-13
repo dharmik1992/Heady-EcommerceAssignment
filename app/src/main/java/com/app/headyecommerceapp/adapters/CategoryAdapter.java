@@ -11,19 +11,26 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.headyecommerceapp.R;
-import com.app.headyecommerceapp.activities.CategoryActivity;
+import com.app.headyecommerceapp.activities.ProductListingActivity;
+import com.app.headyecommerceapp.activities.SubCategoryActivty;
 import com.app.headyecommerceapp.models.Category;
+import com.app.headyecommerceapp.realm.operation.RealmQuery;
 
-import io.realm.RealmResults;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 
-public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    RealmResults<Category> parentCategories;
+    RealmList<Category> subCategories;
+    RealmQuery realmQuery;
+    Realm realm;
 
-    public ParentCategoryAdapter(Context context, RealmResults<Category> parentCategories) {
+    public CategoryAdapter(Context context, RealmList<Category> subCategories, Realm realm, RealmQuery realmQuery) {
         this.context = context;
-        this.parentCategories = parentCategories;
+        this.subCategories = subCategories;
+        this.realm = realm;
+        this.realmQuery = realmQuery;
     }
 
     @NonNull
@@ -40,14 +47,22 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ((HeaderViewHolder) holder).relativeMainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CategoryActivity.class);
-                intent.putExtra("position", parentCategories.get(position).getId());
-                intent.putExtra("title", parentCategories.get(position).getName());
-                context.startActivity(intent);
+                Intent intent;
+                if (realmQuery.hasMoreCategories(subCategories.get(position).getId(), realm)) {
+                    intent = new Intent(context, SubCategoryActivty.class);
+                    intent.putExtra("position", subCategories.get(position).getId());
+                    intent.putExtra("title", subCategories.get(position).getName());
+                    context.startActivity(intent);
+                }else{
+                    intent = new Intent(context, ProductListingActivity.class);
+                    intent.putExtra("position", subCategories.get(position).getId());
+                    intent.putExtra("title", subCategories.get(position).getName());
+                    context.startActivity(intent);
+                }
                 // ((Activity) context).finish();
             }
         });
-        ((HeaderViewHolder) holder).txt_parent_category.setText(parentCategories.get(position).getName());
+        ((HeaderViewHolder) holder).txt_parent_category.setText(subCategories.get(position).getName());
     }
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +79,6 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemCount() {
-        return parentCategories.size();
+        return subCategories.size();
     }
 }

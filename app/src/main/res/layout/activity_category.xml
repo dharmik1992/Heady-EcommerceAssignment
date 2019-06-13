@@ -30,34 +30,13 @@
                 android:id="@+id/include"
                 layout="@layout/layout_error_screen" />
 
-            <ImageView
-                android:id="@+id/img_default"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                android:src="@drawable/onlineshopping" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/img_default"
                 android:background="@color/white">
 
-                <TextView
-                    android:id="@+id/txt_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="true"
-                    android:letterSpacing="0.02"
-                    android:textSize="@dimen/size_18dp"
-                    android:textColor="@color/textColor"
-                    android:padding="@dimen/size_10dp"
-                    android:visibility="gone"
-                    android:text="Categories" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_below="@+id/txt_title"
                     android:id="@+id/recycler_view_parentCategory"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

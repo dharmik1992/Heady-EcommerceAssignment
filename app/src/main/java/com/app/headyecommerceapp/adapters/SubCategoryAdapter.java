@@ -11,19 +11,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.headyecommerceapp.R;
-import com.app.headyecommerceapp.activities.CategoryActivity;
+import com.app.headyecommerceapp.activities.ProductListingActivity;
 import com.app.headyecommerceapp.models.Category;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 
-public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    RealmResults<Category> parentCategories;
-
-    public ParentCategoryAdapter(Context context, RealmResults<Category> parentCategories) {
+    RealmList<Category> subCategories;
+    public SubCategoryAdapter(Context context,RealmList<Category> subCategories) {
         this.context = context;
-        this.parentCategories = parentCategories;
+        this.subCategories = subCategories;
     }
 
     @NonNull
@@ -40,14 +39,15 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ((HeaderViewHolder) holder).relativeMainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CategoryActivity.class);
-                intent.putExtra("position", parentCategories.get(position).getId());
-                intent.putExtra("title", parentCategories.get(position).getName());
+                Intent intent = new Intent(context, ProductListingActivity.class);
+                intent.putExtra("position", subCategories.get(position).getId());
+                intent.putExtra("title", subCategories.get(position).getName());
                 context.startActivity(intent);
-                // ((Activity) context).finish();
+               // ((Activity) context).finish();
             }
         });
-        ((HeaderViewHolder) holder).txt_parent_category.setText(parentCategories.get(position).getName());
+
+        ((HeaderViewHolder) holder).txt_parent_category.setText(subCategories.get(position).getName());
     }
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +64,6 @@ public class ParentCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemCount() {
-        return parentCategories.size();
+        return subCategories.size();
     }
 }
