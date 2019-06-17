@@ -21,7 +21,11 @@ import com.app.headyecommerceapp.models.Product;
 import com.app.headyecommerceapp.models.Variant;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import io.realm.RealmList;
 
@@ -43,53 +47,49 @@ public class ProductListingAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return new HeaderViewHolder(view);
     }
 
+    Set<String> avialblecolors = new HashSet<>();
+    Set<Integer> availableSize = new HashSet<>();
+
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         ((HeaderViewHolder) holder).txt_parent_category.setText(products.get(position).getName());
-//        for (int i = 0; i < products.get(position).getVariants().size(); i++) {
-//            addradiobuttonview(i, products.get(position).getVariants().get(i).getColor(), products.get(position).getVariants().get(i).toString(),
-//                    ((HeaderViewHolder) holder).rd_color_variant);
-//        }
+
+        for (int i = 0; i < products.get(position).getVariants().size(); i++) {
+            avialblecolors.add(products.get(position).getVariants().get(i).getColor());
+        }
+        Iterator avialblecolorsIterator = avialblecolors.iterator();
+        String colors = "";
+        while (avialblecolorsIterator.hasNext()) {
+            String color = avialblecolorsIterator.next().toString();
+            colors += "  " + color;
+        }
+        for (int i = 0; i < products.get(position).getVariants().size(); i++) {
+            availableSize.add(products.get(position).getVariants().get(i).getSize());
+        }
+
+        Iterator iter = availableSize.iterator();
+        String sizes = "";
+        while (iter.hasNext()) {
+            String size = iter.next().toString();
+            sizes += "  " + size;
+        }
+
+        ((HeaderViewHolder) holder).txt_colors.setText(colors);
+        ((HeaderViewHolder) holder).txt_size.setText(sizes);
     }
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_parent_category;
-        TextView txt_price;
-        RadioGroup rd_color_variant;
+        TextView txt_colors, txt_size, txt_parent_category;
 
         public HeaderViewHolder(View view) {
             super(view);
-            rd_color_variant = (RadioGroup) view.findViewById(R.id.rd_color_variant);
             txt_parent_category = (TextView) view.findViewById(R.id.txt_parent_category);
-            txt_price = (TextView) view.findViewById(R.id.txt_price);
+            txt_colors = (TextView) view.findViewById(R.id.txt_colors);
+            txt_size = (TextView) view.findViewById(R.id.txt_size);
         }
-    }
-
-    @SuppressLint("NewApi")
-    public void addradiobuttonview(final int id, final String text, final String tag, final RadioGroup radioGroup) {
-        AppCompatRadioButton rdbtn = new AppCompatRadioButton(context);
-        rdbtn.setButtonTintList(ColorStateList.valueOf(context.getColor(R.color.colorPrimary)));
-        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, 0, 25, 25);
-        rdbtn.setTextSize(16);
-        rdbtn.setLayoutParams(params);
-        rdbtn.setId(id);
-        rdbtn.setText(text);
-        rdbtn.setTag(tag);
-        radioGroup.addView(rdbtn);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-                RadioButton radioBtn = (RadioButton) group.findViewById(checkedRadioButtonId);
-//                Variant variantList = new Gson().fromJson(radioBtn.getTag().toString(), Variant.class);
-//                ((HeaderViewHolder) holder).txt_price.setText(variantList.getPrice());
-//                Toast.makeText(context, radioBtn.getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     @Override

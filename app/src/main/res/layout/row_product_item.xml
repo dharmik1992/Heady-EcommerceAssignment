@@ -42,7 +42,7 @@
                 android:singleLine="true"
                 android:text="Item Name"
                 android:textColor="@android:color/background_dark"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
 
             <TextView
@@ -53,50 +53,51 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:singleLine="true"
-                android:text="Select Variant"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="15sp" />
+                android:text="Available Color"
+                android:textColor="@android:color/background_dark"
+                android:textSize="13sp" />
 
-            <RadioGroup
-                android:id="@+id/rd_color_variant"
+            <TextView
+                android:id="@+id/txt_colors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_below="@+id/txt_variant_title"
                 android:paddingTop="@dimen/size_10dp"
+                android:text="black, blue"
                 android:orientation="horizontal">
 
 
-            </RadioGroup>
+            </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rd_color_variant"
+                android:layout_below="@+id/txt_colors"
                 android:layout_marginTop="@dimen/size_5dp"
                 android:layout_marginLeft="@dimen/size_10dp"
                 android:layout_marginBottom="@dimen/size_15dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txt_price"
+                    android:id="@+id/txt_available_colors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rd_color_variant"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:singleLine="true"
-                    android:text="Rs 20"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="15sp" />
+                    android:text="Available size: "
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/txt_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/size_55dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
                     android:singleLine="true"
-                    android:text="Size - 44"
+                    android:text="44,45"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="15sp" />
             </LinearLayout>
